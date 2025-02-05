@@ -82,4 +82,4 @@ Le projet suit l'architecture **MVC (Modèle-Vue-Contrôleur)** et utilise des s
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/votre-utilisateur/votre-projet.git
+   git clone https://github.com/ABDELHAFIDAIT/cabinet_medical.git
