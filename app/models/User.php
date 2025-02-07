@@ -1,6 +1,6 @@
 <?php
 
-abstract class User{
+class User{
     // Properties
     protected int | null $id;
     protected string | null $nom;
