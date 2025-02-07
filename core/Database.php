@@ -16,14 +16,13 @@ class Database {
         $this->db = DB_NAME;
         $this->user = DB_USER;
         $this->pass = DB_PASS;
-        $this->charset = DB_CHARSET;
 
         $this->connect();
     }
 
     
     private function connect() {
-        $dsn = "pgsql:host=$this->host;dbname=$this->db;charset=$this->charset";
+        $dsn = "pgsql:host=$this->host;dbname=$this->db";
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -52,4 +51,3 @@ class Database {
         return $this->pdo;
     }
 }
-
