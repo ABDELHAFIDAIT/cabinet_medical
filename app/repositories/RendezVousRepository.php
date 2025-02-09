@@ -22,6 +22,8 @@ class RendezVousRepository {
 
 
     // Methods
+
+    
     // add a new rendez-vous
     public function addRendezVous(RendezVous $rdv){
         try {
