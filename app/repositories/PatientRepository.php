@@ -1,14 +1,19 @@
 <?php
 
-require_once __DIR__ . './UserRepository.php';
-require_once __DIR__ . './../core/Database.php';
+namespace App\Repositories;
+
+use App\Models\Patient;
+use App\Repositories\UserRepository;
+use Core\Database;
+use PDO;
+use PDOException;
 
 class PatientRepository extends UserRepository
 {
     // Constructor
-    public function __construct(Database $db)
+    public function __construct()
     {
-        parent::__construct($db);
+        parent::__construct();
     }
 
 
@@ -43,6 +48,38 @@ class PatientRepository extends UserRepository
         } catch (PDOException $e) {
             error_log($e->getMessage(), 3, '../../logs/errors.log');
             throw new PDOException("Error getting patient from the database.");
+        }
+    }
+
+    public function getAllPatients(){
+        try {
+            $query = "SELECT * 
+                    FROM $this->table 
+                    JOIN roles ON $this->table.id_role = roles.id_role
+                    WHERE roles.label = :label";
+            
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':label', 'Patient');
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $patients = [];
+            foreach($result as $row){
+                $patient =  new Patient(
+                    $row['id_user'], 
+                    $row['nom'], 
+                    $row['prenom'], 
+                    $row['email'], 
+                    $row['password'], 
+                    $row['label'], 
+                    $row['status'], 
+                    $row['date_inscription']
+                );
+                array_push($patients,$patient);
+            }
+            return $patients;
+        } catch (PDOException $e) {
+            error_log($e->getMessage(), 3, '../../logs/errors.log');
+            throw new PDOException("Error getting patients from the database.");
         }
     }
 }

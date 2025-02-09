@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ .'./User.php';
+namespace App\Models;
+
+use App\Models\User;
 
 class Patient extends User{
     // Constructor

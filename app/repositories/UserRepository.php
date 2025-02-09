@@ -1,10 +1,14 @@
 <?php
 
-require_once __DIR__ .'./RepositoryInterface.php';
-require_once __DIR__ .'./../../core/Database.php';
+namespace App\Repositories;
+
+use App\Models\User;
+use Core\Database;
+use PDO;
+use PDOException;
 
 
-class UserRepository implements RepositoryInterface
+class UserRepository
 {
     // Properties
     protected $db;
@@ -12,7 +16,7 @@ class UserRepository implements RepositoryInterface
 
 
     // Constructor
-    public function __construct(Database $db)
+    public function __construct()
     {
         $this->db = Database::getInstance()->getConnection();
     }

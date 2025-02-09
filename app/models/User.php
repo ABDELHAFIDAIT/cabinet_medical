@@ -1,15 +1,18 @@
 <?php
 
+
+
+namespace App\Models;
 class User{
     // Properties
-    protected int | null $id;
-    protected string | null $nom;
-    protected string | null $prenom;
-    protected string | null $email;
-    protected string | null $password;
-    protected string | null $role;
-    protected string | null $status;
-    protected string | null $date_inscription;
+    protected ?int $id;
+    protected ?string $nom;
+    protected ?string $prenom;
+    protected ?string $email;
+    protected ?string $password;
+    protected ?string $role;
+    protected ?string $status;
+    protected ?string $date_inscription;
     
 
     // Constructor
